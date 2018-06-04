@@ -1,5 +1,8 @@
 const { readFileSync, writeFileSync, existsSync } = require('fs');
 
+const { lexer } = require('./lexer');
+const { parser } = require('./parser');
+
 const processArguments = process.argv.slice(2);
 
 const compile = processArguments.indexOf('-c') !== -1;
@@ -19,13 +22,9 @@ if (!existsSync(fileName)) {
   process.exit(1);
 }
 
-const program = readFileSync(fileName, { encoding: 'utf-8' })
-    .split(';')
-    .map(row => row.split(' '));
-
-const transpiledProgram = program
-    .map(row => row.join(' '))
-    .join(';')
+const program = readFileSync(fileName, { encoding: 'utf-8' });
+const lexedSource = lexer(program);
+const transpiledProgram = parser(lexedSource);
 
 if (compile) {
     writeFileSync(outputFileName, transpiledProgram);
