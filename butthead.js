@@ -19,10 +19,11 @@ if (!existsSync(fileName)) {
   process.exit(1);
 }
 
-const program = readFileSync(fileName, { encoding: 'utf-8' });
+const program = readFileSync(fileName, { encoding: 'utf-8' })
+    .split(';');
 
 if (compile) {
-    writeFileSync(outputFileName, program);
+    writeFileSync(outputFileName, program.join(';'));
 }
 
 if (evaluate) {
