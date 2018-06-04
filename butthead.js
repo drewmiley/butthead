@@ -20,12 +20,17 @@ if (!existsSync(fileName)) {
 }
 
 const program = readFileSync(fileName, { encoding: 'utf-8' })
-    .split(';');
+    .split(';')
+    .map(row => row.split(' '));
+
+const transpiledProgram = program
+    .map(row => row.join(' '))
+    .join(';')
 
 if (compile) {
-    writeFileSync(outputFileName, program.join(';'));
+    writeFileSync(outputFileName, transpiledProgram);
 }
 
 if (evaluate) {
-    eval(program);
+    eval(transpiledProgram);
 }
