@@ -1,15 +1,17 @@
 const parser = lexedSource => {
 	const parsers = [
-		replaceBhWithConst,
+		convertLineBeginning,
 		replaceHeyBabyWithConsoleLog
 	];
 	return lexedSource
 		.map(expression => parsers.reduce((acc, f) => f(acc), expression))
 		.map(row => row.join(''))
-		.join(';');
+		.join(';\n');
 }
 
-const replaceBhWithConst = expression => expression.map(d => d === 'bh' ? 'const' : d);
+const convertLineBeginning = expression => expression.indexOf('bh:') === 0 ?
+	expression.slice(1) :
+	['const '].concat(expression);
 const replaceHeyBabyWithConsoleLog = expression => expression.map(d => d === 'heybaby' ? 'console.log' : d);
 
 module.exports.parser = parser;

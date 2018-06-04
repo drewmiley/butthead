@@ -7,7 +7,8 @@ Attempt to create a simple js transpiler for compilation and evaluation.
 Currently
 
 * File ends with _.bh_ rather than _.js_
-* Declare constants with `bh`
+* No variable can be reassigned- all variables are constants
+* Declare lines of code that do not assign constants by starting with `bh:`
 * Log to console with `heybaby`
 * Lines end in `!`
 

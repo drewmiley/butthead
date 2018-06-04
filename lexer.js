@@ -1,12 +1,16 @@
 const lexer = program => {
 	return program
 		.split('!')
-		.map(splitRowIntoOperations);
+		.map(splitRowIntoOperations)
+		.slice(0, -1);
 }
 
 const splitRowIntoOperations = row => {
 	return row.split('')
 		.reduce((acc, character) => {
+			if (character === '' || character === '\n' || character === '\r\n') {
+				return acc;
+			}
 			const currentOperation = acc[acc.length - 1];
 			if (characterIsPartOfOperation(character, currentOperation)) {
 				acc[acc.length - 1] = `${ currentOperation }${ character }`;
@@ -26,6 +30,10 @@ const characterIsPartOfOperation = (character, operation) => {
 		return true;
 	} else if (!/[^a-zA-Z]/.test(operation) && !/[^a-zA-Z]/.test(character)) {
 		// Text
+		return true;
+	}
+	if (operation === 'bh' && character === ':') {
+		// Declares non-variables assignment on a line
 		return true;
 	}
 	return false;
