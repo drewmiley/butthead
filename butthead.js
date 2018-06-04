@@ -1,4 +1,4 @@
-const { readFileSync, existsSync } = require('fs');
+const { readFileSync, writeFileSync, existsSync } = require('fs');
 
 const fileName = process.argv.pop();
 
@@ -15,3 +15,5 @@ if (!existsSync(fileName)) {
 const program = readFileSync(fileName, { encoding: 'utf-8' });
 
 eval(program);
+
+writeFileSync(`${ fileName }.js`, program);
