@@ -8,6 +8,8 @@ Currently
 
 * File ends with _.bh_ rather than _.js_
 * Declare constants with `bh`
+* Log to console with `heybaby`
+* Lines end in `!`
 
 ## To run
 

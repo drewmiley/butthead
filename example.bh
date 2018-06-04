@@ -1,3 +1,3 @@
-bh add = (one, two) => one + two;
-bh a = add(2, 2);
-console.log(a);
+bh add = (one, two) => one + two!
+bh a = add(2, 2)!
+heybaby(a)!

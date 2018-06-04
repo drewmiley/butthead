@@ -1,13 +1,15 @@
 const parser = lexedSource => {
-	let parsed = lexedSource;
-	parsed = replaceBhWithConst(parsed);
-	return parsed
+	const parsers = [
+		replaceBhWithConst,
+		replaceHeyBabyWithConsoleLog
+	];
+	return lexedSource
+		.map(expression => parsers.reduce((acc, f) => f(acc), expression))
 		.map(row => row.join(''))
 		.join(';\n');
 }
 
-const replaceBhWithConst = source => {
-	return source.map(row => row.map(d => d === 'bh' ? 'const' : d));
-}
+const replaceBhWithConst = expression => expression.map(d => d === 'bh' ? 'const' : d);
+const replaceHeyBabyWithConsoleLog = expression => expression.map(d => d === 'heybaby' ? 'console.log' : d);
 
 module.exports.parser = parser;
