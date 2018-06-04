@@ -8,6 +8,7 @@ Currently
 
 * File ends with _.bh_ rather than _.js_
 * No variable can be reassigned- all variables are constants
+* Constans should be arrays or functions, unless note keeping
 * Declare lines of code that do not assign constants by starting with `bh:`
 * Log to console with `heybaby`
 * Lines end in `!`

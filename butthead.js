@@ -13,18 +13,27 @@ const outputFileName = processArguments.find(arg => arg.startsWith('-o=')) ?
     `${ fileName }.js`;
 
 if (fileName.slice(-3) !== '.bh') {
-    console.error('You\'re a buttmunch!');
+    console.error('You\'re a buttmunch! File suffix should be .bh');
     process.exit(1);
 }
 
 if (!existsSync(fileName)) {
-  console.error(`"${fileName}" does not exist.`);
+  console.error(`You\'re a buttmunch! "${fileName}" does not exist.`);
   process.exit(1);
 }
 
 const program = readFileSync(fileName, { encoding: 'utf-8' });
 const lexedSource = lexer(program);
 const transpiledProgram = parser(lexedSource);
+
+transpiledProgram.split(';').forEach(row => {
+    if (row.includes('const ')) {
+        if (!row.includes('=>') && (!row.includes('[') && !row.includes(']'))) {
+            console.error('You\'re a buttmunch! Constants should be arrays or functions unless note keeping.');
+            process.exit(1);
+        }
+    }
+})
 
 if (compile) {
     writeFileSync(outputFileName, transpiledProgram);
