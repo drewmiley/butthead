@@ -2,8 +2,12 @@ const parser = lexedSource => {
 	let parsed = lexedSource;
 	parsed = replaceBhWithConst(parsed);
 	return parsed
-		.map(row => row.join(' '))
+		.map(joinRow)
 		.join(';\n');
+}
+
+const joinRow = row => {
+	return row.join(' ');
 }
 
 const replaceBhWithConst = source => {
