@@ -6,7 +6,7 @@ const parser = lexedSource => {
 	return lexedSource
 		.map(expression => parsers.reduce((acc, f) => f(acc), expression))
 		.map(row => row.join(''))
-		.join(';\n');
+		.join(';');
 }
 
 const replaceBhWithConst = expression => expression.map(d => d === 'bh' ? 'const' : d);

@@ -1,5 +1,5 @@
 const lexer = program => {
-	return program.replace(/(?:\r\n|\r|\n)/g, '')
+	return program
 		.split('!')
 		.map(splitRowIntoOperations);
 }
