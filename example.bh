@@ -1,4 +1,4 @@
 add = (one, two) => one + two!
 note:a = add(2, 2)!
 b = [a]!
-bh:heybaby(b)!
+bh:heybaby(b[0] ISNOT 4)!

@@ -1,12 +1,14 @@
 const parser = lexedSource => {
 	const parsers = [
 		convertLineBeginning,
+		convertLogicalOperators,
 		replaceHeyBabyWithConsoleLog
 	];
 	return lexedSource
 		.map(expression => parsers.reduce((acc, f) => f(acc), expression))
 		.map(row => row.join(''))
-		.join(';\n');
+		.join(';\n')
+		.concat([';\n']);
 }
 
 const convertLineBeginning = expression => {
@@ -15,6 +17,13 @@ const convertLineBeginning = expression => {
 		(expression.indexOf('note:') === 0 ?
 			['const '].concat(expression.slice(1)) :
 			['const '].concat(expression));
+}
+const convertLogicalOperators = expression => {
+	return expression
+		.map(d => d === 'OR' ? '||' : d)
+		.map(d => d === 'ISNOT' ? '!==' : d)
+		.map(d => d === 'IS' ? '===' : d)
+		.map(d => d === 'AND' ? '&&' : d);
 }
 const replaceHeyBabyWithConsoleLog = expression => expression.map(d => d === 'heybaby' ? 'console.log' : d);
 
