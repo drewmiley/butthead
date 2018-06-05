@@ -1,3 +1,4 @@
 add = (one, two) => one + two!
-a = [add(2, 2)]!
-bh:heybaby(a)!
+note a = add(2, 2)!
+b = [a]
+bh:heybaby(b)!
