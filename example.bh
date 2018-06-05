@@ -2,3 +2,11 @@ add = (one, two) => one + two!
 note:a = add(2, 2)!
 b = [a]!
 bh:heybaby(b[0] ISNOT 4)!
+array = [1, 2, 3, 4, 5]
+	.SORT(-1)
+	.MAP(d + i)
+	.FILTER(d % 3 IS 0)!
+bh:heybaby(array)!
+sum = [1, 2, 3, 4]
+	.REDUCE(acc + d, 0)!
+bh:heybaby(sum)!
