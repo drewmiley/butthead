@@ -12,7 +12,9 @@ const parser = lexedSource => {
 const convertLineBeginning = expression => {
 	return expression.indexOf('bh:') === 0 ?
 		expression.slice(1) :
-		['const '].concat(expression);
+		(expression.indexOf('note:') === 0 ?
+			['const '].concat(expression.slice(1)) :
+			['const '].concat(expression));
 }
 const replaceHeyBabyWithConsoleLog = expression => expression.map(d => d === 'heybaby' ? 'console.log' : d);
 
