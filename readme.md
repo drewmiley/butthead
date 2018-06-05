@@ -11,6 +11,7 @@ Currently
 * Constants should be arrays or functions, unless note keeping
 * Declare constants that are not functions or arrays by `note:`
 * Declare lines of code that do not assign constants by starting with `bh:`
+* Logical operators `IS, ISNOT, OR, AND` supported
 * Log to console with `heybaby`
 * Lines end in `!`
 
