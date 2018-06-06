@@ -27,7 +27,7 @@ const lexedSource = lexer(program);
 
 lexedSource.forEach(row => {
 		const isArray = row.includes('[') && row.includes(']');
-		const isFunction = row.includes('=') && row.includes('>');
+		const isFunction = row.includes('->');
 		const isArrayMethod = row.includes('FILTER') || row.includes('MAP') || row.includes('REDUCE') || row.includes('SORT');
 		const isNote = row.includes('note:');
 		const isBh = row.includes('bh:');

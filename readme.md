@@ -16,6 +16,7 @@ Currently
 * MAP has implicit parameters `d, i`
 * REDUCE has implicit parameters `acc, d, i`
 * SORT has implicit parameters `a, b`
+* Declare arrow functions with `->`
 * Log to console with `heybaby`
 * Lines end in `!`
 

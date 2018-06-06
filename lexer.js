@@ -32,6 +32,10 @@ const characterIsPartOfOperation = (character, operation) => {
 		// Text
 		return true;
 	}
+	if (operation === '-' && character === '>') {
+		// Arrow function
+		return true;
+	}
 	if ((operation === 'bh' || operation === 'note') && character === ':') {
 		// Declares non-variables assignment on a line
 		return true;
