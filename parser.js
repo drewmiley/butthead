@@ -47,7 +47,7 @@ const convertSortAndAddParameters = expression => expression.includes('SORT') ?
 const replaceHeyBabyWithConsoleLog = expression => expression.map(d => d === 'heybaby' ? 'console.log' : d);
 
 const addNewLineToTabs = expression => expression.includes('\t') ?
-	expression.slice(0, expression.indexOf('\t')).concat('\n').concat(expression.indexOf('\t')) :
+	expression.slice(0, expression.indexOf('\t')).concat('\n').concat(expression.slice(expression.indexOf('\t'))) :
 	expression;
 
 module.exports.parser = parser;
