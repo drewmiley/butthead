@@ -22,25 +22,19 @@ const splitRowIntoOperations = row => {
 }
 
 const characterIsPartOfOperation = (character, operation) => {
-	if (operation === ' ' && character === ' ') {
-		// Space
-		return true;
-	} else if (parseInt(operation) && parseInt(character)) {
-		// Int
-		return true;
-	} else if (!/[^a-zA-Z]/.test(operation) && !/[^a-zA-Z]/.test(character)) {
-		// Text
-		return true;
-	}
-	if (operation === '-' && character === '>') {
-		// Arrow function
-		return true;
-	}
-	if ((operation === 'bh' || operation === 'note') && character === ':') {
-		// Declares non-variables assignment on a line
-		return true;
-	}
-	return false;
+	const isSpace = str => str === ' ';
+	const isNumber = str => !isNaN(str);
+	const isText = str => !/[^a-zA-Z]/.test(str);
+	const isBracket = str => str === '[' || str === ']' || str === '{' || str === '}' || str === '(' || str === ')';
+	const isPunctuation = str => (!isSpace(str) && !isNumber(str) && !isText(str) && !isBracket(str));
+	return (isSpace(character) && isSpace(operation)) ||
+		(isNumber(character) && isNumber(operation)) ||
+		(isText(character) && isText(operation)) ||
+		(isBracket(character) && isBracket(operation)) ||
+		(isPunctuation(character) && isPunctuation(operation)) ||
+		isNumber(operation) && character === '.' ||
+		operation == '-' && isNumber(character) ||
+		(operation === 'bh' || operation === 'note') && character === ':';
 }
 
 module.exports.lexer = lexer;

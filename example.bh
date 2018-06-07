@@ -1,7 +1,7 @@
 add = (one, two) -> one + two!
-note:a = add(2, 2)!
+note:a = add(2.5, 2)!
 b = [a]!
-bh:heybaby(b[0] ISNOT 4)!
+bh:heybaby(b[0] ISNOT 4.5)!
 array = [1, 2, 3, 4, 5]
 	.SORT(-1)
 	.MAP(d + i)
