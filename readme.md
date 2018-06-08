@@ -17,6 +17,7 @@ Currently
 * REDUCE has implicit parameters `acc, d, i`
 * SORT has implicit parameters `a, b`
 * Declare arrow functions with `->`
+* Declare continuation of array functions with `|>`
 * Log to console with `heybaby`
 * Lines end in `!`
 

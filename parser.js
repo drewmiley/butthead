@@ -8,6 +8,7 @@ const parser = lexedSource => {
 		convertSortAndAddParameters,
 		replaceHeyBabyWithConsoleLog,
 		convertArrowFunction,
+		convertArrayMethodFlow,
 		addNewLineToTabs
 	];
 	return lexedSource
@@ -48,6 +49,8 @@ const convertSortAndAddParameters = expression => expression.includes('SORT') ?
 const replaceHeyBabyWithConsoleLog = expression => expression.map(d => d === 'heybaby' ? 'console.log' : d);
 
 const convertArrowFunction = expression => expression.map(d => d === '->' ? '=>' : d);
+
+const convertArrayMethodFlow = expression => expression.map(d => d === '|>' ? '.' : d);
 
 const addNewLineToTabs = expression => expression.includes('\t') ?
 	expression.slice(0, expression.indexOf('\t')).concat('\n').concat(expression.slice(expression.indexOf('\t'))) :
